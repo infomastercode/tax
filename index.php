@@ -1,41 +1,54 @@
 <?php
 
-require __DIR__ . '/libraries/Controllers.php';
+require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/libraries/Controllers.php';
+require_once __DIR__ . '/libraries/Models.php';
+require_once __DIR__ . '/libraries/Database.php';
 
-$request = $_SERVER['REDIRECT_URL'];
-$url = explode("/", $request);
+init();
+$url = get_url();
 
 switch ($url[2]) {
-    case '/' :
-        require __DIR__ . '/views/welcome.php';
-        break;
-    case 'tax_list' :
-        require __DIR__ . '/views/tax_list.php';
-        break;
-//    case 'tax_form' :
-//        require __DIR__ . '/views/tax_form.php';
-//        break;
-    case 'tax_form' :
-        require __DIR__ . '/controllers/tax.php';
-        $t = new Tax($url);
-        break;
-    default:
-        require __DIR__ . '/views/404.php';
-        break;
+  case 'tax_list' :
+    require PATH . '/controllers/tax.php';
+    $t = new Tax();
+    $t->index();
+    break;
+  case 'tax_form' :
+    require PATH . '/controllers/tax.php';
+    $t = new Tax();
+    $t->add();
+    break;
+  default:
+    show_404();
+    break;
+}
+
+function init() {
+  // init
 }
 
 function set_debug($message) {
-    echo '<pre>';
-    print_r($message);
-    exit;
+  echo '<pre>';
+  print_r($message);
+  exit;
 }
 
-function view($view, $data = array()) {
-    $var = array();
-    if (!empty($data)) {
-        foreach ($data as $key => $value) {
-            ${$key} = $value;
-        }
-    }
-    require __DIR__ . '/views/' . $view . '.php';
+function get_url() {
+  $request = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : '';
+  if (empty($request))
+    return 'tax_list';
+
+  return explode("/", $request);
+}
+
+function show_404() {
+  header('HTTP/1.0 404 Not Found');
+  echo "<h1>Error 404 Not Found</h1>";
+  echo "The page that you have requested could not be found.";
+  exit();
+}
+
+function datetime_today() {
+  return date("Y-m-d H:i:s");
 }

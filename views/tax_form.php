@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container">
-      <form action="add" method="post">
+      <form action="<?= $action; ?>" method="post">
         <div class="row">
           <div class="col">
             <label class="control-label">ชื่อ</label>
@@ -16,7 +16,7 @@
           </div>
           <div class="col">
             <label class="control-label">เลขประจำตัวผู้เสียภาษีอากร</label>
-            <input type="text" name="card_name" class="form-control">
+            <input type="text" name="card_tax" class="form-control">
           </div>
         </div>
         <div class="row">
@@ -34,33 +34,33 @@
             <label class="control-label"></label>
             <div class="row">
               <div class="col-md-3">
-                <input type="checkbox">
+                <input type="checkbox" name="tax_type" value="1">
                 <label class="control-label">(1) ภ.ง.ด.1ก</label>
               </div>
               <div class="col-md-3">
-                <input type="checkbox">
+                <input type="checkbox" name="tax_type" value="2">
                 <label class="control-label">(2) ภ.ง.ด.1ก</label>
               </div>
               <div class="col-md-3">
-                <input type="checkbox">
+                <input type="checkbox" name="tax_type" value="3">
                 <label class="control-label">(3) ภ.ง.ด.1ก</label>
               </div>
               <div class="col-md-3">
-                <input type="checkbox">
+                <input type="checkbox" name="tax_type" value="4">
                 <label class="control-label">(4) ภ.ง.ด.1ก</label>
               </div>
             </div>
             <div class="row">
               <div class="col-md-3">
-                <input type="checkbox">
+                <input type="checkbox" name="tax_type" value="5">
                 <label class="control-label">(5) ภ.ง.ด.1ก</label>
               </div>
               <div class="col-md-3">
-                <input type="checkbox">
+                <input type="checkbox" name="tax_type" value="6">
                 <label class="control-label">(6) ภ.ง.ด.1ก</label>
               </div>
               <div class="col-md-3">
-                <input type="checkbox">
+                <input type="checkbox" name="tax_type" value="7">
                 <label class="control-label">(7) ภ.ง.ด.1ก</label>
               </div>
             </div>
@@ -113,17 +113,17 @@
         <div class="row">
           <div class="col">
             <label class="control-label">รวมเงินหักภาษีที่หัก (ตัวอักษร)</label>
-            <input type="text" class="form-control">
+            <input type="text" name="total_charactor" class="form-control">
           </div>
         </div>
         <div class="row">
           <div class="col">
             <label class="control-label">ผู้จ่ายเงิน</label>
             <div>
-              <input type="checkbox"> (1) หัก ณ ที่จ่าย
-              <input type="checkbox"> (2) ออกให้ตลอดไป
-              <input type="checkbox"> (3) ออกให้ครั้งเดียว
-              <input type="checkbox"> (4) อื่น ๆ
+              <input type="checkbox" name="pay_type" value="1"> (1) หัก ณ ที่จ่าย
+              <input type="checkbox" name="pay_type" value="2"> (2) ออกให้ตลอดไป
+              <input type="checkbox" name="pay_type" value="3"> (3) ออกให้ครั้งเดียว
+              <input type="checkbox" name="pay_type" value="4"> (4) อื่น ๆ
             </div>
           </div>
         </div>
@@ -131,13 +131,16 @@
         <div class="row">
           <div class="col">
             <label class="control-label">ลงชื่อ (ขอรับรองว่าเป็นความจริงทุกประการ)</label>
-            <input type="text" class="form-control">
+            <input type="text" name="signal_name" class="form-control">
           </div>
         </div>
 
-
         <hr>
         <button class="btn btn-primary" type="submit">save</button>
+        <a href="<?= $back; ?>" class="btn btn-light" type="button">back</a>
+        <button class="btn btn-success" type="submit">pdf</button>
+        <button class="btn btn-warning" type="submit">sent mail</button>
+        <hr>
       </form>
     </div>
 
