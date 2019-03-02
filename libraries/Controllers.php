@@ -3,7 +3,11 @@
 class Controllers {
 
   public function __construct() {
-
+    //set_debug(get_url());
+  }
+  
+  public function route(){
+    set_debug(get_url());
   }
 
   public function isPost() {

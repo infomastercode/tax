@@ -51,8 +51,52 @@ class Database {
     return $stmt->rowCount() > 0 ? true : false;
   }
 
+  public function update($table = "", $data = array(), $where) {
+    if ($table == "" || empty($data) || empty($where))
+      return false;
+
+    $sql = "UPDATE $table SET ";
+    $c = array();
+    foreach ($data as $key => $value) {
+      $c[] = $key . " = '$value' ";
+    }
+
+    $c = implode(",", $c) . " ";
+    $sql = $sql . $c . $where;
+
+    $stmt = $this->conn->prepare($sql);
+
+//    foreach ($data as $key => $value) {
+//
+//      $stmt->bindParam(":" . $key, $value);
+//    }
+  
+     //set_debug($stmt);
+
+    return $stmt->execute();
+  }
+
   public function insert_id() {
     return $this->conn->lastInsertId();
+  }
+
+  public function query($sql) {
+    return $this->conn->query($sql);
+  }
+
+  public function row($query) {
+    $result = $query->fetchObject();
+    return $result;
+  }
+
+  public function result_array($query) {
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+  }
+
+  public function row_array($query) {
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    return $result;
   }
 
 }

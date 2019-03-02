@@ -12,55 +12,55 @@
         <div class="row">
           <div class="col">
             <label class="control-label">ชื่อ</label>
-            <input type="text" name="name" class="form-control">
+            <input type="text" name="name" value="<?= $b['name']; ?>" class="form-control">
           </div>
           <div class="col">
             <label class="control-label">เลขประจำตัวผู้เสียภาษีอากร</label>
-            <input type="text" name="card_tax" class="form-control">
+            <input type="text" name="card_tax" value="<?= $b['card_tax']; ?>" class="form-control">
           </div>
         </div>
         <div class="row">
           <div class="col">
             <label class="control-label">ที่อยู่</label>
-            <input type="text" name="address" class="form-control">
+            <input type="text" name="address" value="<?= $b['address']; ?>" class="form-control">
           </div>
         </div>
         <div class="row">
           <div class="col-md-4">
             <label class="control-label">ลำดับที่</label>
-            <input type="text" name="number" class="form-control">
+            <input type="text" name="number" value="<?= $b['number']; ?>" class="form-control">
           </div>
           <div class="col-md-8">
             <label class="control-label"></label>
             <div class="row">
               <div class="col-md-3">
-                <input type="checkbox" name="tax_type" value="1">
+                <input type="checkbox" name="tax_type" value="1" <?= $b['tax_type'] == 1 ? 'checked' : ''; ?> >
                 <label class="control-label">(1) ภ.ง.ด.1ก</label>
               </div>
               <div class="col-md-3">
-                <input type="checkbox" name="tax_type" value="2">
+                <input type="checkbox" name="tax_type" value="2" <?= $b['tax_type'] == 2 ? 'checked' : ''; ?> >
                 <label class="control-label">(2) ภ.ง.ด.1ก</label>
               </div>
               <div class="col-md-3">
-                <input type="checkbox" name="tax_type" value="3">
+                <input type="checkbox" name="tax_type" value="3" <?= $b['tax_type'] == 3 ? 'checked' : ''; ?> >
                 <label class="control-label">(3) ภ.ง.ด.1ก</label>
               </div>
               <div class="col-md-3">
-                <input type="checkbox" name="tax_type" value="4">
+                <input type="checkbox" name="tax_type" value="4" <?= $b['tax_type'] == 4 ? 'checked' : ''; ?> >
                 <label class="control-label">(4) ภ.ง.ด.1ก</label>
               </div>
             </div>
             <div class="row">
               <div class="col-md-3">
-                <input type="checkbox" name="tax_type" value="5">
+                <input type="checkbox" name="tax_type" value="5" <?= $b['tax_type'] == 5 ? 'checked' : ''; ?> >
                 <label class="control-label">(5) ภ.ง.ด.1ก</label>
               </div>
               <div class="col-md-3">
-                <input type="checkbox" name="tax_type" value="6">
+                <input type="checkbox" name="tax_type" value="6" <?= $b['tax_type'] == 6 ? 'checked' : ''; ?> >
                 <label class="control-label">(6) ภ.ง.ด.1ก</label>
               </div>
               <div class="col-md-3">
-                <input type="checkbox" name="tax_type" value="7">
+                <input type="checkbox" name="tax_type" value="7" <?= $b['tax_type'] == 7 ? 'checked' : ''; ?> >
                 <label class="control-label">(7) ภ.ง.ด.1ก</label>
               </div>
             </div>
@@ -113,7 +113,7 @@
         <div class="row">
           <div class="col">
             <label class="control-label">รวมเงินหักภาษีที่หัก (ตัวอักษร)</label>
-            <input type="text" name="total_charactor" class="form-control">
+            <input type="text" name="total_charactor" value="<?= $b['total_charactor']; ?>" class="form-control">
           </div>
         </div>
         <div class="row">
@@ -131,14 +131,16 @@
         <div class="row">
           <div class="col">
             <label class="control-label">ลงชื่อ (ขอรับรองว่าเป็นความจริงทุกประการ)</label>
-            <input type="text" name="signal_name" class="form-control">
+            <input type="text" name="signal_name" value="<?= $b['signal_name']; ?>" class="form-control">
           </div>
         </div>
+        
+        <input type="text" name="id_tax" value="<?= $b['id_tax']; ?>">
 
         <hr>
         <button class="btn btn-primary" type="submit">save</button>
         <a href="<?= $back; ?>" class="btn btn-light" type="button">back</a>
-        <button class="btn btn-success" type="submit">pdf</button>
+        <a href="<?= $pdf; ?>" target="_blank" class="btn btn-success" type="button">pdf</a>
         <button class="btn btn-warning" type="submit">sent mail</button>
         <hr>
       </form>
