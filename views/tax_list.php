@@ -11,20 +11,22 @@
   </head>
   <body>
     <div class="container">
-      <br>
-      <a href="<?= $add; ?>" class="btn btn-primary" type="button">add</a>
       <br><br>
+      <div class="float-right">
+        <a href="<?= $add; ?>" class="btn btn-primary" type="button">เพิ่มข้อมูล</a>
+      </div>
+      <br><br><hr>
 
       <div class="table-responsive">
         <table id="tbl_list" class="table table-bordered table-hover table-condensed">
           <thead>
             <tr>
               <th data-dynatable-column="row" data-dynatable-no-sort="true" style="text-align:center;">#</th>
-              <th data-dynatable-column="name" style="text-align:center;">NAME</th>
-              <th data-dynatable-column="card_tax" style="text-align:center;">CARD TAX</th>
-              <th data-dynatable-column="number" style="text-align:center;">NUMBER</th>
-              <th data-dynatable-column="date_add" style="text-align:right;">DATE ADD</th>
-              <th data-dynatable-column="option" data-dynatable-no-sort="true" style="text-align:right;">OPTION</th>
+              <th data-dynatable-column="name" style="text-align:center;">ชื่อ</th>
+              <th data-dynatable-column="card_tax" style="text-align:center;">เลขประจำตัว</th>
+              <th data-dynatable-column="number" style="text-align:center;">ลำดับที่</th>
+              <th data-dynatable-column="date_add" style="text-align:right;">วันที่สร้าง</th>
+              <th data-dynatable-column="option" data-dynatable-no-sort="true" style="text-align:right;">แก้ไข</th>
             </tr>
           </thead>
           <tbody>

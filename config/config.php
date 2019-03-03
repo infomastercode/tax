@@ -4,6 +4,7 @@
 // config data for init
 $config['base_url'] = 'http://localhost/tax/';
 $config['index_page'] = 'index.php';
+$config['email'] = 'buraphaunivac@gmail.com';
 $config['language'] = 'english';
 $config['charset'] = 'UTF-8';
 $config['db_host'] = 'localhost';
@@ -14,6 +15,7 @@ $config['db_database'] = 'db_tax';
 // SET CONSTANT
 define('BASE_URL', $config['base_url']);
 define('PATH', realpath(__DIR__."/../"));
+define('EMAIL', $config['email']);
 define('DB_HOST', $config['db_host']);
 define('DB_NAME', $config['db_name']);
 define('DB_PASS', $config['db_pass']);

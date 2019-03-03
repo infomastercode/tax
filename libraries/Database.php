@@ -46,6 +46,9 @@ class Database {
     $bind = ':' . implode(',:', array_keys($data));
     $sql = 'insert into ' . $table . '(' . implode(',', array_keys($data)) . ') ' .
             'values (' . $bind . ')';
+    
+    //if($table == 'tax_detail')set_debug($sql);
+    
     $stmt = $this->conn->prepare($sql);
     $stmt->execute(array_combine(explode(',', $bind), array_values($data)));
     return $stmt->rowCount() > 0 ? true : false;

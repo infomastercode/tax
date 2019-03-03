@@ -17,6 +17,7 @@ class Tax extends Controllers {
   public function add() {
     if ($this->isPost()) {
       $value = $this->getPostValue();
+      //set_debug($value);
       $id = $this->tax_model->addTax($value);
     }
 
@@ -53,6 +54,8 @@ class Tax extends Controllers {
     $b = $this->tax_model->getTax($id_tax);
     $data = $this->initForm();
     $data['action'] = $this->base_url . "/edit/" . $id_tax;
+    $data['pdf'] = $this->base_url . "/displayPDF/" . $id_tax;
+    $data['send_mail'] = $this->base_url . "/send_mail/" . $id_tax;
 
 //    $data = array();
 //    
@@ -60,7 +63,7 @@ class Tax extends Controllers {
 //    $data['pdf'] = $this->base_url . "displayPDF";
     $data['id_tax'] = $id_tax;
     $data['b'] = array_merge($this->form(), $b);
-    //set_debug($data);
+    // set_debug($data);
     $this->view('tax_form', $data);
   }
 
@@ -70,10 +73,37 @@ class Tax extends Controllers {
     $data['action'] = $this->base_url . "/add";
     $data['back'] = $this->base_url;
     $data['pdf'] = $this->base_url . "/displayPDF";
+    $data['send_mail'] = $this->base_url . "/send_mail/";
     return $data;
   }
 
   private function form() {
+    $detail = array();
+    $detail['S']['id_tax_detail'] = '';
+    $detail['S']['pay_date'] = '';
+    $detail['S']['pay_total'] = '';
+    $detail['S']['pay_tax'] = '';
+
+    $detail['F']['id_tax_detail'] = '';
+    $detail['F']['pay_date'] = '';
+    $detail['F']['pay_total'] = '';
+    $detail['F']['pay_tax'] = '';
+
+    $detail['C']['id_tax_detail'] = '';
+    $detail['C']['pay_date'] = '';
+    $detail['C']['pay_total'] = '';
+    $detail['C']['pay_tax'] = '';
+
+    $detail['I']['id_tax_detail'] = '';
+    $detail['I']['pay_date'] = '';
+    $detail['I']['pay_total'] = '';
+    $detail['I']['pay_tax'] = '';
+
+    $detail['O']['id_tax_detail'] = '';
+    $detail['O']['pay_date'] = '';
+    $detail['O']['pay_total'] = '';
+    $detail['O']['pay_tax'] = '';
+
     return array(
         'name' => '',
         'id_tax' => '',
@@ -84,6 +114,7 @@ class Tax extends Controllers {
         'total_charactor' => '',
         'pay_type' => '',
         'signal_name' => '',
+        'detail' => $detail
     );
   }
 
@@ -110,17 +141,12 @@ class Tax extends Controllers {
       foreach ($results as $key => $result) {
         $tmp['row'] = $start + ($key + 1);
         $tmp['id_tax'] = $result['id_tax'];
-        $tmp['name'] = $result['card_tax'];
-        $tmp['vendor'] = $result['address'];
-        $tmp['store'] = $result['number'];
+        $tmp['name'] = $result['name'];
+        $tmp['card_tax'] = $result['card_tax'];
+        $tmp['address'] = $result['address'];
+        $tmp['number'] = $result['number'];
         $tmp['tax_type'] = $result['tax_type'];
-        $tmp['salary'] = $result['salary'];
-        $tmp['fee'] = $result['fee'];
-        $tmp['copy_right'] = $result['copy_right'];
-        $tmp['interest'] = $result['interest'];
         $tmp['total_charactor'] = $result['total_charactor'];
-        $tmp['other'] = $result['other'];
-        $tmp['detail'] = $result['detail'];
         $tmp['pay_type'] = $result['pay_type'];
         $tmp['signal_name'] = $result['signal_name'];
         $tmp['date_add'] = table_date($result['date_add']);
@@ -131,10 +157,17 @@ class Tax extends Controllers {
     }
   }
 
-  public function displayPDF() {
+  public function displayPDF($id_tax) {
+    $b = $this->tax_model->getTax($id_tax);
     require_once PATH . '/controllers/fpdf.php';
     $pdf = new DisplayPDF();
-    $pdf->display();
+    $pdf->display($b);
+  }
+
+  public function send_mail($id_tax) {
+    require_once PATH . '/controllers/email.php';
+    $email = new Email();
+    $email->send();
   }
 
 }

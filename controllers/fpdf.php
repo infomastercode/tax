@@ -4,8 +4,8 @@ require_once PATH . '/libraries/fpdf181/fpdf.php';
 
 class DisplayPDF {
 
-  public function display() {
-
+  public function display($b) {
+    //set_debug($b);
     define('FPDF_FONTPATH', PATH . '/libraries/fonts/font/');
     $pdf = new FPDF();
     $pdf->AddPage();
@@ -20,38 +20,60 @@ class DisplayPDF {
     //                                            $align L C R
     // Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link='')
 
-
     $margin = 5;
     $padding = 10;
     $pdf->Rect($margin, $margin, $getw - $padding, $geth - $padding);
-    $pdf->Cell(0, 0, iconv('UTF-8', 'TIS-620', 'หนังสือรับรองการหักภาษี ณ ที่จ่าย'), 0, 0, 'C');
+    $pdf->Cell(0, 0, name('หนังสือรับรองการหักภาษี ณ ที่จ่าย'), 0, 0, 'C');
     $pdf->Ln(10);
 
     $margin_in = 7;
     $padding_in = 12;
     $pdf->Rect($margin_in, 15, $getw - 15, 30);
-    $pdf->Cell($getw / 2, 0, iconv('UTF-8', 'TIS-620', 'ชื่อ'), 0, 0);
-    $pdf->Cell($getw / 2, 0, iconv('UTF-8', 'TIS-620', 'เลข'), 0, 0);
+    $pdf->Cell($getw / 2, 0, name('ชื่อ', $b['name']), 0, 0);
+    $pdf->Cell($getw / 2, 0, name('เลข', $b['card_tax']), 0, 0);
     $pdf->Ln(10);
-    $pdf->Cell($getw / 2, 0, iconv('UTF-8', 'TIS-620', 'ที่อยู่'), 0, 0);
+    $pdf->Cell($getw / 2, 0, name('ที่อยู่', $b['address']), 0, 0);
     $pdf->Ln(10);
-    $pdf->Cell($getw / 2, 0, iconv('UTF-8', 'TIS-620', 'ลำดับที่'), 0, 0);
-    $pdf->Cell($getw / 2, 0, iconv('UTF-8', 'TIS-620', 'ชนิด'), 0, 0);
-    
+    $pdf->Cell($getw / 2, 0, name('ลำดับที่', $b['number']), 0, 0);
+    $pdf->Cell($getw / 2, 0, name('ชนิด', $b['tax_type']), 0, 0);
+
     $pdf->Ln(10);
+    $pdf->Rect($margin_in, 47, $getw - 15, 10);
     $pdf->Cell($getw / 4, 0, iconv('UTF-8', 'TIS-620', 'ประเภทเงิน'), 0, 0);
     $pdf->Cell($getw / 4, 0, iconv('UTF-8', 'TIS-620', 'วัน'), 0, 0);
     $pdf->Cell($getw / 4, 0, iconv('UTF-8', 'TIS-620', 'จำนวน'), 0, 0);
     $pdf->Cell($getw / 4, 0, iconv('UTF-8', 'TIS-620', 'หัก'), 0, 0);
     
+    $pdf->Rect($margin_in, 57, $getw - 15, 60);
     $pdf->Ln(10);
-    $pdf->Cell($getw / 2, 0, iconv('UTF-8', 'TIS-620', 'รวมภาษีหักเงิน'), 0, 0);
+    $pdf->Cell($getw / 2, 0, name('1.เงินเดือน ค่าจ้าง'), 0, 0);
+    $pdf->Ln(10);
+    $pdf->Cell($getw / 2, 0, name('2.ค่าธรรมเนียม'), 0, 0);
+    $pdf->Ln(10);
+    $pdf->Cell($getw / 2, 0, name('3.ค่าลิขสิทธ์'), 0, 0);
+    $pdf->Ln(10);
+    $pdf->Cell($getw / 2, 0, name('4.การจ่ายเงิน'), 0, 0);
+    $pdf->Ln(10);
+    $pdf->Cell($getw / 2, 0, name('5.อื่นๆ'), 0, 0);
+    
+    $pdf->Ln(20);
+    $pdf->Cell($getw / 2, 0, name('รวมเงินภาษีหักส่ง'), 0, 0);
     
     $pdf->Ln(10);
-    $pdf->Cell($getw / 2, 0, iconv('UTF-8', 'TIS-620', 'ผู้จ่ายเงิน'), 0, 0);
+    $pdf->Cell($getw / 2, 0, name('ผู้จ่ายเงิน'), 0, 0);
     
     $pdf->Ln(10);
-    $pdf->Cell($getw / 2, 0, iconv('UTF-8', 'TIS-620', 'ลงชื่อ'), 0, 0);
+    $pdf->Cell($getw / 2, 0, name('คำเตือน'), 0, 0);
+    $pdf->Cell($getw / 2, 0, name('ลงชื่อ'), 0, 0);
+
+//    $pdf->Ln(10);
+//    $pdf->Cell($getw / 2, 0, iconv('UTF-8', 'TIS-620', 'รวมภาษีหักเงิน'), 0, 0);
+//
+//    $pdf->Ln(10);
+//    $pdf->Cell($getw / 2, 0, name('ผู้จ่ายเงิน', $b['pay_type']), 0, 0);
+//
+//    $pdf->Ln(10);
+//    $pdf->Cell($getw / 2, 0, name('ลงชื่อ', $b['signal_name']), 0, 0);
 
 
 

@@ -30,9 +30,9 @@ function table_option($redirect, $identifier, $options = array()) {
       $icon = "<i class='fa fa-tasks'></i>";
     }
 
-    $url = $redirect."/".$option."/".$identifier;
+    $url = $redirect . "/" . $option . "/" . $identifier;
 
-    $html.= "<a href='$url' data-toggle='tooltip' title='$option' class='$btn_class'>$icon</a> ";
+    $html .= "<a href='$url' data-toggle='tooltip' title='$option' class='$btn_class'>$icon</a> ";
   }
 
   return $html;
@@ -58,7 +58,7 @@ function table_image($image) {
   if (empty($image)) {
     $image = DEFAULT_IMAGE;
   }
-  return "<img src=".$image." width='32' class='img-thumbnail'>";
+  return "<img src=" . $image . " width='32' class='img-thumbnail'>";
 }
 
 function table_view_purchase($purchase_id) {
@@ -67,8 +67,8 @@ function table_view_purchase($purchase_id) {
 
 function table_radio_click($param_id, $check = false, $event = '') {
   $checked = $check ? 'checked' : '';
-  $event = !empty($event) ? 'onclick='.$event.'($(this))' : '';
-  return "<input type='radio' name='checked' class='selected' value=".$param_id." $checked $event >";
+  $event = !empty($event) ? 'onclick=' . $event . '($(this))' : '';
+  return "<input type='radio' name='checked' class='selected' value=" . $param_id . " $checked $event >";
 }
 
 function organizationButtonSelect($function, $org_id, $org_no, $company) {
@@ -80,13 +80,13 @@ function organizationButtonSelect($function, $org_id, $org_no, $company) {
 
 function partButtonSelect($function, $product_id, $param1 = '', $param2 = '', $param3 = '') {
   if (!empty($param3)) {
-    $event = $function.'(\''.$product_id.'\',\''.$param1.'\',\''.$param2.'\',\''.$param3.'\')';
+    $event = $function . '(\'' . $product_id . '\',\'' . $param1 . '\',\'' . $param2 . '\',\'' . $param3 . '\')';
   } else if (!empty($param2)) {
-    $event = $function.'(\''.$product_id.'\',\''.$param1.'\',\''.$param2.'\')';
+    $event = $function . '(\'' . $product_id . '\',\'' . $param1 . '\',\'' . $param2 . '\')';
   } else if (!empty($param1)) {
-    $event = $function.'(\''.$product_id.'\',\''.$param1.'\')';
+    $event = $function . '(\'' . $product_id . '\',\'' . $param1 . '\')';
   } else {
-    $event = $function.'(\''.$product_id.'\')';
+    $event = $function . '(\'' . $product_id . '\')';
   }
   return "<button onclick=$event type='button' data-dismiss='modal' data-toggle='tooltip' title='Select' class='btn btn-primary btn-sm'><i class='fa fa-pencil'></i>";
 }
@@ -131,11 +131,9 @@ function date_convert_php($date) {
   return date('d-m-Y', strtotime($str_date));
 }
 
-
 function image_default($image) {
   return !empty($image) ? $image : DEFAULT_IMAGE;
 }
-
 
 function debug_list($count, $sql, $is_debug = false) {
   if ($is_debug && !$count) {
@@ -164,11 +162,11 @@ function order_by_limit($count, $sorts, $start, $limit) {
       $sort = "ASC";
     }
 
-    $sql.= "ORDER BY $order_by $sort ";
+    $sql .= "ORDER BY $order_by $sort ";
   }
 
   if (!empty($limit)) {
-    $sql.= "LIMIT ".$start.", ".$limit;
+    $sql .= "LIMIT " . $start . ", " . $limit;
   }
 
   return $sql;
@@ -181,7 +179,7 @@ function order_by($sorts, $by) {
 
   $sql = '';
   if (empty($sorts)) {
-    $sql.= $by.' '; /* need blank space */
+    $sql .= $by . ' '; /* need blank space */
   }
   return $sql;
 }
@@ -198,12 +196,12 @@ function column_search($search = '', $columns = array(), $columns_unset = array(
     if ($value === 0 || !empty($value)) {
       // not do anything.
     } else {
-      $index_like[$key] = $column." LIKE '%".$search."%'";
+      $index_like[$key] = $column . " LIKE '%" . $search . "%'";
     }
   }
 
   $sqlsearch = implode(' OR ', $index_like);
-  $sql .= "AND (".$sqlsearch.") ";
+  $sql .= "AND (" . $sqlsearch . ") ";
 
   return $sql;
 }
@@ -225,7 +223,7 @@ function implode_comma($data) {
 }
 
 function implode_comma_quote($data) {
-  return "'".implode("','", $data)."'";
+  return "'" . implode("','", $data) . "'";
 }
 
 function offset_dyna($value) {
@@ -243,7 +241,7 @@ function in_empty($data, $replace = '') {
 }
 
 function set_image($result_id, $img_dir_name) {
-  $setimage = array('path' => $img_dir_name, 'img_default' => $img_dir_name.'_default_', 'img_medium' => $img_dir_name.'_medium_', 'img_small' => $img_dir_name.'_small_');
+  $setimage = array('path' => $img_dir_name, 'img_default' => $img_dir_name . '_default_', 'img_medium' => $img_dir_name . '_medium_', 'img_small' => $img_dir_name . '_small_');
   $url_small = Container::uploadImage($result_id, $setimage);
   return $url_small;
 }
@@ -290,4 +288,11 @@ function show_404() {
   echo "<h1>Error 404 Not Found</h1>";
   echo "The page that you have requested could not be found.";
   exit();
+}
+
+function name($name1, $name2 = "") {
+  if ($name2 != "") {
+    $name1 = $name1 . " " . $name2;
+  }
+  return iconv('UTF-8', 'TIS-620', $name1);
 }
