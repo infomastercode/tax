@@ -296,3 +296,26 @@ function name($name1, $name2 = "") {
   }
   return iconv('UTF-8', 'TIS-620', $name1);
 }
+
+function get_tax_type($tax_type) {
+  switch ($tax_type) {
+    case '1' : return '(1) ภ.ง.ด.1ก';
+    case '2' : return '(2) ภ.ง.ด.1ก พิเศษ';
+    case '3' : return '(3) ภ.ง.ด.2';
+    case '4' : return '(4) ภ.ง.ด.3';
+    case '5' : return '(5) ภ.ง.ด.2ก';
+    case '6' : return '(6) ภ.ง.ด.3ก';
+    case '7' : return '(7) ภ.ง.ด.53';
+  }
+  return "";
+}
+
+function get_pay_type($pay_type) {
+  switch ($pay_type) {
+    case '1' : return '(1) หัก ณ ที่จ่าย';
+    case '2' : return '(2) ออกให้ตลอดไป';
+    case '3' : return '(3) ออกให้ครั้งเดียว';
+    case '4' : return '(4) อื่นๆ';
+  }
+  return "";
+}

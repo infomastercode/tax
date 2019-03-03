@@ -14,19 +14,19 @@ class Email {
       $mail->isSMTP();
       $mail->Host = "smtp.gmail.com";
       $mail->SMTPAuth = TRUE;
-      $mail->Username = "infomastercode@gmail.com";
-      $mail->Password = "password";
+      $mail->Username = STMP_EMAIL;
+      $mail->Password = STMP_PASSWORD;
       $mail->SMTPSecure = false;
       $mail->Port = 587;
 
-      $mail->SetFrom("infomastercode@gmail.com", 'Test Lernt');
-      $mail->addAddress('infomastercode@gmail.com');
+      $mail->SetFrom(EMAIL_SENDFROM, 'Test Lernt');
+      $mail->addAddress(EMAIL_SENDTO);
       $mail->isHTML(true);
-      $mail->Subject = "test mail aaaaaa";
+      $mail->Subject = "tax";
       $mail->Body = "<i>this is your passworsd:ssssssssssssssssssssss</i>";
       $mail->AltBody = "This is the plain text version of the email content";
 
-      $mail->addAttachment('C:\Users\user\Downloads\tax.pdf');
+      $mail->addAttachment(PATH . '/files/mytax.pdf');
 
       if ($mail->send()) {
         echo 'Message has been sent';

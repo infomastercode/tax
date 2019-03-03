@@ -165,6 +165,11 @@ class Tax extends Controllers {
   }
 
   public function send_mail($id_tax) {
+    $b = $this->tax_model->getTax($id_tax);
+    require_once PATH . '/controllers/fpdf.php';
+    $pdf = new DisplayPDF();
+    $pdf->display($b, true);
+
     require_once PATH . '/controllers/email.php';
     $email = new Email();
     $email->send();
