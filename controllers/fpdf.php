@@ -94,21 +94,26 @@ class DisplayPDF {
 
     $pdf->Ln(92);
     $pdf->Rect($margin_in, $geth - 80, $getw - 15, 10);
-    $pdf->Cell($getw / 2, 0, name('รวมเงินภาษีที่หักส่งหักส่ง (ตัวอักษร)', $b['signal_name']), 0, 0);
+    $pdf->Cell($getw / 2, 0, name('รวมเงินภาษีที่หักส่งหักส่ง (ตัวอักษร)', $b['total_charactor']), 0, 0);
 
     $pdf->Ln(12);
     $pdf->Rect($margin_in, $geth - 68, $getw - 15, 10);
     $pdf->Cell($getw / 2, 0, name('ผู้จ่ายเงิน', get_pay_type($b['pay_type'])), 0, 0);
 
-    $pdf->Ln(10);
+    $pdf->Ln(20);
 
+//    $pdf->Rect($margin_in, $geth - 50, $getw / 2 - 15, 30);
+//    $pdf->Ln(5);
+//    $pdf->Cell($getw / 2, 0, name('คำเตือน กกกกกกกกกกกกกกก'), 0, 0);
+//    $pdf->Rect($getw / 2 - 5, $geth - 50, $getw / 2 - 2, 30);
+//    $pdf->Cell($getw / 2, 0, name('ลงชื่อ'), 0, 0);
 
-    //$pdf->Rect($margin_in, $geth - 65, $getw - 15, 10);
-    $pdf->Rect($margin_in, $geth - 50, $getw / 2 - 15, 30);
+    $pdf->Rect($margin_in, $geth - 50, $getw - 15, 30);
+    $pdf->Cell(0, 0, name('ขอรับรองว่าข้อความและตัวเลขดังกล่าวข้างต้นถูกต้องกับความจริงทุกประการ'), 0, 0, 'C');
     $pdf->Ln(5);
-    $pdf->Cell($getw / 2, 0, name('คำเตือน กกกกกกกกกกกกกกก'), 0, 0);
-    $pdf->Rect($getw / 2 - 5, $geth - 50, $getw / 2 - 2, 30);
-    $pdf->Cell($getw / 2, 0, name('ลงชื่อ'), 0, 0);
+    $pdf->Cell(0, 0, name('ลงชื่อ.....', $b['signal_name']." .....ผู้จ่ายเงิน"), 0, 0, 'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0, 0, name('วันที่', $b['date_upd'].""), 0, 0, 'C');
 
 
 //    $pdf->Ln(10);

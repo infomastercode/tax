@@ -2,3 +2,7 @@
 .dynatable-sort-header{
     color: black;
 }
+
+th a:hover {
+  color: black;
+}

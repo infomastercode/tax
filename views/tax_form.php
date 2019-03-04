@@ -11,10 +11,10 @@
       <form action="<?= $action; ?>" method="post">
         <br><br>
         <div class="float-right">
-          <button class="btn btn-primary" type="submit">save</button>
-          <a href="<?= $back; ?>" class="btn btn-light" type="button">back</a>
-          <a href="<?= $pdf; ?>" target="_blank" class="btn btn-success" type="button">pdf</a>
-          <a href="<?= $send_mail; ?>" target="_blank" class="btn btn-warning" type="button">sent mail</a>
+          <button class="btn btn-primary" type="submit">บันทึก</button>
+          <a href="<?= $back; ?>" class="btn btn-light" type="button">หน้ารายการ</a>
+          <a href="<?= $pdf; ?>" target="_blank" class="btn btn-success" type="button">เอกสาร pdf</a>
+          <a href="<?= $send_mail; ?>" target="_blank" class="btn btn-warning" type="button">ส่งอีเมล</a>
         </div>
         <br><br><br>
         <div class="row">

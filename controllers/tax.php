@@ -19,6 +19,8 @@ class Tax extends Controllers {
       $value = $this->getPostValue();
       //set_debug($value);
       $id = $this->tax_model->addTax($value);
+      
+      header('Location: ' . $this->base_url);
     }
 
     $data = $this->initForm();
@@ -39,7 +41,7 @@ class Tax extends Controllers {
 //        Container::setNotification($this->notice_type, Agent::E, 'The purchase has an error');
 //      }
 
-      header('Location: ' . $this->base_url . "/edit/$id");
+      header('Location: ' . $this->base_url);
       // redirect($this->base_url . "/edit/$id", 'refresh');
 //      if ($this->value['save'] == 'save') {
 //        redirect($this->base_url, 'refresh');

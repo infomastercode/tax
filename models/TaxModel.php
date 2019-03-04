@@ -29,9 +29,9 @@ class TaxModel extends Models {
       $detail = array();
       $detail['id_tax'] = $id_tax;
       $detail['code_tax'] = $value['code_tax'];
-      $detail['pay_date'] = $value['pay_date'];
-      $detail['pay_total'] = $value['pay_total'];
-      $detail['pay_tax'] = $value['pay_tax'];
+      $detail['pay_date'] = $value['pay_date'] != '' ? $value['pay_date'] : null;
+      $detail['pay_total'] = $value['pay_total'] != '' ? $value['pay_total'] : null;
+      $detail['pay_tax'] = $value['pay_tax'] != '' ? $value['pay_tax'] : null;
       //set_debug($detail);
       $affected = $this->db->insert('tax_detail', $detail);
 
@@ -77,13 +77,13 @@ class TaxModel extends Models {
       $detail = array();
       $detail['id_tax'] = $id_tax;
       $detail['code_tax'] = $value['code_tax'];
-      $detail['pay_date'] = $value['pay_date'];
-      $detail['pay_total'] = $value['pay_total'];
-      $detail['pay_tax'] = $value['pay_tax'];
+      $detail['pay_date'] = $value['pay_date'] != '' ? $value['pay_date'] : null;
+      $detail['pay_total'] = $value['pay_total'] != '' ? $value['pay_total'] : null;
+      $detail['pay_tax'] = $value['pay_tax'] != '' ? $value['pay_tax'] : null;
 
       if (!empty($value['id_tax_detail'])) {
         $id_tax_detail = $value['id_tax_detail'];
-        $affect = $this->db->update('tax_detail', $detail, "WHERE id_tax_detail = $id_tax_detail");
+        $affect = $this->db->update('tax_detail', $detail, "WHERE id_tax_detail = $id_tax_detail", 1);
       } else {
         // add detail
       }
@@ -112,9 +112,18 @@ class TaxModel extends Models {
     $details = $this->db->result_array($query);
 
     $detail = array();
-    foreach ($details as $d) {
+    foreach ($details as $i => $d) {
       $detail[$d['code_tax']] = $d;
+//      $code_tax = $d['code_tax'];
+//      $detail[$code_tax]['id_tax_detail'] = $d['id_tax_detail'];
+//      $detail[$code_tax]['id_tax'] = $d['id_tax'];
+//      $detail[$code_tax]['code_tax'] = $d['code_tax'];
+//      $detail[$code_tax]['pay_date'] = $d['pay_date'];
+//      $detail[$code_tax]['pay_total'] = $d['pay_total'];
+//      $detail[$code_tax]['pay_tax'] = $d['pay_tax'];
     }
+
+    // set_debug($detail);
 
     $data = array();
     $data = $master;
@@ -138,8 +147,8 @@ class TaxModel extends Models {
             . "WHERE 1 ";
 
     // search
-    $columns_unset = array();
-    $columns_search = array('id_tax', 'date_add');
+    $columns_unset = array('id_tax');
+    $columns_search = array('name', 'card_tax', 'number', 'date_add');
     $sql .= column_search($search, $columns_search, $columns_unset);
     unset($columns_unset);
     unset($columns_search);

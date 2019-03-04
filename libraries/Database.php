@@ -46,26 +46,33 @@ class Database {
     $bind = ':' . implode(',:', array_keys($data));
     $sql = 'insert into ' . $table . '(' . implode(',', array_keys($data)) . ') ' .
             'values (' . $bind . ')';
-    
+
     //if($table == 'tax_detail')set_debug($sql);
-    
+
     $stmt = $this->conn->prepare($sql);
     $stmt->execute(array_combine(explode(',', $bind), array_values($data)));
     return $stmt->rowCount() > 0 ? true : false;
   }
 
-  public function update($table = "", $data = array(), $where) {
+  public function update($table = "", $data = array(), $where, $is_debug = false) {
     if ($table == "" || empty($data) || empty($where))
       return false;
 
     $sql = "UPDATE $table SET ";
     $c = array();
     foreach ($data as $key => $value) {
-      $c[] = $key . " = '$value' ";
+      if ($value === null) {
+        $c[] = $key . " = null ";
+      } else {
+        $c[] = $key . " = '$value' ";
+      }
     }
 
     $c = implode(",", $c) . " ";
     $sql = $sql . $c . $where;
+
+//    if ($is_debug)
+//      set_debug($sql);
 
     $stmt = $this->conn->prepare($sql);
 
@@ -73,8 +80,7 @@ class Database {
 //
 //      $stmt->bindParam(":" . $key, $value);
 //    }
-  
-     //set_debug($stmt);
+    //set_debug($stmt);
 
     return $stmt->execute();
   }

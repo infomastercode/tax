@@ -8,6 +8,11 @@ require_once PATH . '/libraries/mail/vendor/autoload.php';
 class Email {
 
   public function send() {
+    if (STMP_EMAIL == '' || STMP_PASSWORD == '' || EMAIL_SENDFROM == '' || EMAIL_SENDTO == '') {
+      echo 'กรุณาตั้งค่าข้อมูลอีเมลในไฟล์ config.php';
+      exit();
+    }
+
     $mail = new PHPMailer();                              // Passing `true` enables exceptions
     try {
       $mail->SMTPDebug = 1;
@@ -23,18 +28,18 @@ class Email {
       $mail->addAddress(EMAIL_SENDTO);
       $mail->isHTML(true);
       $mail->Subject = "tax";
-      $mail->Body = "<i>this is your passworsd:ssssssssssssssssssssss</i>";
+      $mail->Body = "This is the plain text version of the email content";
       $mail->AltBody = "This is the plain text version of the email content";
 
       $mail->addAttachment(PATH . '/files/mytax.pdf');
 
       if ($mail->send()) {
-        echo 'Message has been sent';
+        echo 'ส่งอีเมลเรียบร้อยแล้ว';
       } else {
-        echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        echo 'เกิดข้อผิดพลาด: ', $mail->ErrorInfo;
       }
     } catch (Exception $e) {
-      echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+      echo 'เกิดข้อผิดพลาด: ', $mail->ErrorInfo;
     }
   }
 
