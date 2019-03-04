@@ -10,8 +10,8 @@ $config['db_pass'] = '';
 $config['db_database'] = 'db_tax';
 
 // CONFIG EMAIL
-$config['stmt_email'] = 'infomastercode@gmail.com';
-$config['stmt_password'] = 'za105swark9GL';
-$config['email_sendfrom'] = 'infomastercode@gmail.com';
-$config['email_sendto'] = 'infomastercode@gmail.com';
+$config['stmt_email'] = 'buraphaunivac@gmail.com';
+$config['stmt_password'] = 'mypassword';
+$config['email_sendfrom'] = 'buraphaunivac@gmail.com';
+$config['email_sendto'] = 'buraphaunivac@gmail.com';
 
