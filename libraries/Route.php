@@ -28,11 +28,9 @@ class Route {
     } else if ($function != "") {
       $c = new $class();
       $c->$function();
-    } else if ($file != "") {
-      $c = new $class();
-      $c->index();
     } else {
-      show_404();
+      $c = new Tax();
+      $c->index();
     }
   }
 

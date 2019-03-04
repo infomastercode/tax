@@ -278,7 +278,7 @@ function set_debug($message) {
 function get_url() {
   $request = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : '';
   if (empty($request))
-    return 'tax_list';
+    return '';
 
   return explode("/", $request);
 }
