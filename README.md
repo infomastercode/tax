@@ -15,5 +15,5 @@
    - แสดงเอกสาร pdf
    - ส่งอีเมล
 
-## หากทดสอบการส่ง email ใน local แล้วไม่ได้ให้ ลองเปิด Turn on access ตาม link นี้ครับ (หัวข้อ Change account access for less secure apps)
+## หากทดสอบการส่ง email ใน local แล้วไม่ได้ ให้ลองเปิด Turn on access ตาม link นี้ครับ (หัวข้อ Change account access for less secure apps)
 https://support.google.com/accounts/answer/6010255?hl=en
