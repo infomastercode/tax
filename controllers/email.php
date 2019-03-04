@@ -24,12 +24,12 @@ class Email {
       $mail->SMTPSecure = false;
       $mail->Port = 587;
 
-      $mail->SetFrom(EMAIL_SENDFROM, 'Test Lernt');
+      $mail->SetFrom(EMAIL_SENDFROM, 'Test Tax');
       $mail->addAddress(EMAIL_SENDTO);
       $mail->isHTML(true);
       $mail->Subject = "tax";
-      $mail->Body = "This is the plain text version of the email content";
-      $mail->AltBody = "This is the plain text version of the email content";
+      $mail->Body = "This is the tax pdf for test";
+      $mail->AltBody = "This is the tax pdf for test";
 
       $mail->addAttachment(PATH . '/files/mytax.pdf');
 
