@@ -19,7 +19,6 @@ class Tax extends Controllers {
       $value = $this->getPostValue();
       //set_debug($value);
       $id = $this->tax_model->addTax($value);
-      
       header('Location: ' . $this->base_url);
     }
 
@@ -32,22 +31,7 @@ class Tax extends Controllers {
     if ($this->isPost()) {
       $value = $this->getPostValue();
       $id = $this->tax_model->editTax($value);
-
-//      if (!empty($purchase_id)) {
-//        Container::setLog(__METHOD__, "purchase update success", $purchase_id);
-//        Container::setNotification($this->notice_type, Agent::S, "The purchase $number has updated");
-//      } else {
-//        Container::setLog(__METHOD__, "purchase update error", $purchase_id);
-//        Container::setNotification($this->notice_type, Agent::E, 'The purchase has an error');
-//      }
-
       header('Location: ' . $this->base_url);
-      // redirect($this->base_url . "/edit/$id", 'refresh');
-//      if ($this->value['save'] == 'save') {
-//        redirect($this->base_url, 'refresh');
-//      } else {
-//        redirect($this->base_url . "/edit/$purchase_id", 'refresh');
-//      }
     }
     $this->getFormData($id_tax);
   }
@@ -58,11 +42,6 @@ class Tax extends Controllers {
     $data['action'] = $this->base_url . "/edit/" . $id_tax;
     $data['pdf'] = $this->base_url . "/displayPDF/" . $id_tax;
     $data['send_mail'] = $this->base_url . "/send_mail/" . $id_tax;
-
-//    $data = array();
-//    
-//    $data['back'] = $this->base_url . "tax_list";
-//    $data['pdf'] = $this->base_url . "displayPDF";
     $data['id_tax'] = $id_tax;
     $data['b'] = array_merge($this->form(), $b);
     // set_debug($data);

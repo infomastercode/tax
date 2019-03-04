@@ -13,9 +13,9 @@ class Email {
       exit();
     }
 
-    $mail = new PHPMailer();                              // Passing `true` enables exceptions
+    $mail = new PHPMailer(); // Passing `true` enables exceptions
     try {
-      $mail->SMTPDebug = 1;
+      //$mail->SMTPDebug = 1;
       $mail->isSMTP();
       $mail->Host = "smtp.gmail.com";
       $mail->SMTPAuth = TRUE;

@@ -75,13 +75,6 @@ class Database {
 //      set_debug($sql);
 
     $stmt = $this->conn->prepare($sql);
-
-//    foreach ($data as $key => $value) {
-//
-//      $stmt->bindParam(":" . $key, $value);
-//    }
-    //set_debug($stmt);
-
     return $stmt->execute();
   }
 

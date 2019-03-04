@@ -122,9 +122,6 @@ class TaxModel extends Models {
 //      $detail[$code_tax]['pay_total'] = $d['pay_total'];
 //      $detail[$code_tax]['pay_tax'] = $d['pay_tax'];
     }
-
-    // set_debug($detail);
-
     $data = array();
     $data = $master;
     $data['detail'] = $detail;
